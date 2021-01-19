@@ -2,27 +2,30 @@ const elements = {
     radio: {
         type: "radio",
         id: "radioId",
-        name: "radioName"
+        name: "radioName",
+        label: "male"
+
     },
-    checkBox: {
+    checkbox: {
         type: "checkbox",
         id: "checkboxId",
-        name: "checkboxName"
+        name: "checkboxName",
+        label: "Notify Account"
     },
     text: {
         type: "text",
         id: "textId",
-        name: "textName"
+        name: "textName",
+        label: "What is your name?"
     }
 }
 
-
-
-const create = (obj) => `<input type=${obj.type} name=${obj.name} id=${obj.id} />`;
-
-
+const create = ({ label, type, name, id }) => `<label for=${label}>${label}</label></br><input type=${type} name=${name} id=${id} />`;
 
 let _s = (val) => document.querySelector(`#${val}`);
 
+const createEl = (ele) => {
+    _s(ele).addEventListener('click', () => _s("el").innerHTML = create(elements[ele]));
+}
 
-_s("cb").addEventListener('click', () => _s("el").innerHTML = create(elements.checkBox));
+createEl("text");
